@@ -22,7 +22,7 @@ const fileUpload = require("express-fileupload");
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: ["http://localhost:5173","https://campus-meds-nitrr.vercel.app"],
+		origin: "https://campus-meds-nitrr.vercel.app",
 		credentials: true,
 	})
 );
