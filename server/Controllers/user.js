@@ -75,7 +75,7 @@ exports.login=async(req,res)=>{
         }
 
         //check password
-        if(await bcrypt.compare(password,userExist.password)){
+        if(bcrypt.compare(password,userExist.password)){
 
             const token=jwt.sign(
                 {

@@ -1,62 +1,59 @@
-
-// Server Instance
-const express=require('express');
-const app=express();
-app.use(express.json());
+// Load environment variables first
 require('dotenv').config();
 
+// Server Instance
+const express = require('express');
+const app = express();
 
-
-// DB connection
-require('./Config/database').dbConnect();
-// cloudinary connection
-const {cloudinaryConnect} = require("./Config/cloudinary");
-cloudinaryConnect();
-
-
-
-// parsers
+// Middleware imports
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
+
+// === Apply middleware in correct order ===
+
+// 1. Cookie parser first — for authentication tokens
 app.use(cookieParser());
-app.use(
-	cors({
-		origin: "https://campus-meds-nitrr.vercel.app",
-		credentials: true,
-	})
-);
-app.use(
-	fileUpload({
-		useTempFiles: true,
-		tempFileDir: "/tmp/",
-	})
-);
 
+// 2. CORS setup — allow your frontend to send credentials (cookies)
+app.use(cors({
+  origin: "https://campus-meds-nitrr.vercel.app", // ✅ Your deployed frontend URL
+  credentials: true, // ✅ Required to allow cookies
+}));
 
+// 3. JSON parser
+app.use(express.json());
 
-// routes
+// 4. File upload config
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: "/tmp/",
+}));
+
+// === Database & Cloudinary setup ===
+require('./Config/database').dbConnect();
+const { cloudinaryConnect } = require("./Config/cloudinary");
+cloudinaryConnect();
+
+// === Routes ===
 const userRoutes = require('./Routes/user');
-const facilityRoutes = require('./Routes/facility')
-const medicineRoutes = require('./Routes/medicine')
-const hopitalRoutes = require('./Routes/nearByHospital')
+const facilityRoutes = require('./Routes/facility');
+const medicineRoutes = require('./Routes/medicine');
+const hopitalRoutes = require('./Routes/nearByHospital');
 const notificationRoutes = require('./Routes/notification');
 const galleryRoutes = require('./Routes/gallery');
-const historyRoutes = require('./Routes/history')
+const historyRoutes = require('./Routes/history');
 
-app.use("/api/auth",userRoutes)
-app.use("/api/facility",facilityRoutes)
-app.use("/api/medicine",medicineRoutes)
-app.use("/api/hospital",hopitalRoutes)
-app.use('/api/notification',notificationRoutes)
-app.use('/api/gallery',galleryRoutes)
-app.use('/api/history',historyRoutes)
+app.use("/api/auth", userRoutes);
+app.use("/api/facility", facilityRoutes);
+app.use("/api/medicine", medicineRoutes);
+app.use("/api/hospital", hopitalRoutes);
+app.use("/api/notification", notificationRoutes);
+app.use("/api/gallery", galleryRoutes);
+app.use("/api/history", historyRoutes);
 
-
-
-
-// Server live
-const PORT=process.env.PORT || 4000;
-app.listen(PORT,()=>{
-    console.log("Server running at port 4000");
-})
+// === Start Server ===
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server running at port ${PORT}`);
+});
