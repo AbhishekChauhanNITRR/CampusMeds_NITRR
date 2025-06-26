@@ -521,10 +521,10 @@ exports.deleteStaff = async (req, res) => {
 }
 
 exports.logout = (req, res) => {
-  res.clearCookie("token", {
+   res.clearCookie("token", {
     httpOnly: true,
-    secure: false, // should be true in production (HTTPS)
-    sameSite: "Lax",
+    secure: true,       
+    sameSite: "None",     
   });
 
   return res.status(200).json({
