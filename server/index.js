@@ -10,15 +10,14 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 
-// === Apply middleware in correct order ===
 
 // 1. Cookie parser first — for authentication tokens
 app.use(cookieParser());
 
 // 2. CORS setup — allow your frontend to send credentials (cookies)
 app.use(cors({
-  origin: "https://campus-meds-nitrr.vercel.app", // ✅ Your deployed frontend URL
-  credentials: true, // ✅ Required to allow cookies
+  origin: "http://localhost:5173", // Your deployed frontend URL
+  credentials: true, //  Required to allow cookies
 }));
 
 // 3. JSON parser

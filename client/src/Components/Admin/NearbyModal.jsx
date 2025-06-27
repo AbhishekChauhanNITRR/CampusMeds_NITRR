@@ -24,7 +24,7 @@ const NearbyModal = ({ title, fxnOpenClose,setData,showLoader,hideLoader }) => {
       showLoader();
       const res=await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/hospital/add`,formData,{withCredentials:true});
 
-      console.log(res.data.final);
+      // console.log(res.data.final);
       setData(prev => [...prev, res.data.final]);
       setFormData({
         name: "",

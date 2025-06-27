@@ -32,9 +32,9 @@ const ViewRecord = ({ title,currElt, fxnOpenClose }) => {
 
                     {/* Data Rows */}
                     <div className="grid gap-2">
-                        {currElt.medicines.map((elt, idx) => (
+                        {currElt?.medicines.map((elt, idx) => (
                             <div key={idx} className="grid grid-cols-2 text-sm text-gray-800">
-                                <p>{elt.name}</p>
+                                <p>{elt?.name}</p>
                                 <p>{elt.requiredQuantity}</p>
                             </div>
                         ))}

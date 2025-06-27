@@ -54,7 +54,7 @@ exports.staffAdminAuth = async (req, res, next) => {
 
         // Verify the token
         try{
-            const decode =await jwt.verify(token, process.env.JWT_SECRET);
+            const decode =jwt.verify(token, process.env.JWT_SECRET);
             // console.log("Decoded token :- ", decode);
             req.user = await User.findById(decode.userId).select('-password');
 

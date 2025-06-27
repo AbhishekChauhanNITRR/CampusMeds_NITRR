@@ -8,14 +8,16 @@ import ViewByRoll from "../../Components/Admin/Records/ViewByRoll";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { format } from 'date-fns';
+
+    let monthList=[
+        "Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"
+    ];
 const Records=({showLoader,hideLoader})=>{
 
     const [searchRoll,setSearchRoll]=useState("");
 
     const [yearList,setYearList]=useState([]);
-    let monthList=[
-        "Jan","Feb","Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"
-    ];
+    
     const [selectedYear,setSelectedYear]=useState("");
     const [selectedMonth,setSelectedMonth]=useState("");
 
@@ -146,7 +148,7 @@ const Records=({showLoader,hideLoader})=>{
                         <div className="text-blue-500">
                             <IoEye onClick={()=>setView(elt)}/>
                         </div>
-                        <div>{elt.student.name}</div>
+                        <div>{elt?.student?.name}</div>
                         <div>{elt.roll}</div>
                         <div>{format(new Date(elt.createdAt), 'dd-MM-yyyy')}</div>
                     </div>
@@ -155,10 +157,10 @@ const Records=({showLoader,hideLoader})=>{
 
             <div>
                 {
-                    view && <ViewRecord title={view.student.name} currElt={view} fxnOpenClose={setView}/>
+                    view && <ViewRecord title={view?.student?.name} currElt={view} fxnOpenClose={setView}/>
                 }
                 {
-                    viewbyRoll && <ViewByRoll title={viewbyRoll[0].student.name} currElt={viewbyRoll} fxnOpenClose={setViewbyRoll}/>
+                    viewbyRoll && <ViewByRoll title={viewbyRoll[0]?.student?.name} currElt={viewbyRoll} fxnOpenClose={setViewbyRoll}/>
                 }
             </div>
 

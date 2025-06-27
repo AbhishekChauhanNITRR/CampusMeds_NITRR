@@ -18,7 +18,7 @@ const ViewByRoll = ({ title,currElt, fxnOpenClose }) => {
 
                 {/* Dummy Student Info */}
                 <div className="mb-4 text-sm text-gray-700 space-y-1">
-                    <p><span className="font-semibold">Name:</span> {currElt[0].student.name}</p>
+                    <p><span className="font-semibold">Name:</span> {currElt[0]?.student?.name}</p>
                     <p><span className="font-semibold">Email:</span> {currElt[0].student.email}</p>
                     <p><span className="font-semibold">Roll No:</span> {currElt[0].roll}</p>
                 </div>
@@ -40,9 +40,9 @@ const ViewByRoll = ({ title,currElt, fxnOpenClose }) => {
                             </div>
 
                             {/* Medicines */}
-                            {entry.medicines.map((medItem, medIdx) => (
+                            {entry?.medicines.map((medItem, medIdx) => (
                                 <div key={medIdx} className="grid grid-cols-2 text-sm text-gray-800 mb-1">
-                                    <p>{medItem.name}</p>
+                                    <p>{medItem?.name}</p>
                                     <p>{medItem.requiredQuantity}</p>
                                 </div>
                             ))}
