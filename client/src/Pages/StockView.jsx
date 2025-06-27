@@ -20,14 +20,14 @@ const StockView=({showLoader,hideLoader})=>{
 
     const fetchData=async()=>{
         try {
-            // showLoader();
+            showLoader();
 
             const res=await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/medicine/get-by-name?name=${med}`);
             let arr=[];
             res.data.med.map((elt,idx)=>{
                 arr.push({sno:idx+1,name:elt.name,quantity:elt.quantity,usage:elt.usage})
             })
-            // setData(arr);
+            setData(arr);
 
         } catch (error) {
             toast.error("Error");
