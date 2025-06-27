@@ -23,7 +23,7 @@ exports.register=async(req,res)=>{
             })
         }
         // this roll no exist
-        const userExist2=await User.findOne({roll:roll});
+        const userExist2=await User.findOne({roll:rollno});
         if(userExist2){
             return res.status(400).json({
                 success:false,
