@@ -12,7 +12,7 @@ require('dotenv').config();
 exports.register=async(req,res)=>{
     try {
 
-        const { name, email, password, roll } = req.body;
+        const { name, email, password, rollno } = req.body;
         
         // this email id is new or not
         const userExist=await User.findOne({email:email});
@@ -36,7 +36,7 @@ exports.register=async(req,res)=>{
             name:name,
             email:email,
             password:hashedPass,
-            roll:roll
+            roll:rollno
         })
 
 
