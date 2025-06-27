@@ -36,40 +36,40 @@ const Login = ({setIsLogin,showLoader,hideLoader}) => {
   
 
   const handleSubmitlogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      showLoader();
+  try {
+    showLoader();
 
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/auth/login`,
-        loginformData,
-        {
-          withCredentials: true, // Enables cookie/token handling
-        }
-      );
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/api/auth/login`,
+      loginformData,
+      { withCredentials: true }
+    );
 
-      // console.log(res);
-      localStorage.setItem('token',res.data.token)
-      localStorage.setItem('userInfo',JSON.stringify(res.data.user))
-      localStorage.setItem('isLogin',true)
+    if (res.data.success) {
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userInfo', JSON.stringify(res.data.user));
+      localStorage.setItem('isLogin', true);
       setIsLogin(true);
       toast.success("Logged In Successfully");
 
-      if(res.data.user.role==="Student"){
+      if (res.data.user.role === "Student") {
         navigate(`/student/${res.data.user._id}`);
-      }
-      else{
+      } else {
         navigate('/admin/dashboard');
       }
-      // Optionally: save token, redirect, or update auth state
-    } catch (error) {
-      console.error("Login error:", error);
-      toast.error("Login failed");
-    } finally {
-      hideLoader();
+    } else {
+      toast.error(res.data.message || "Login failed");
     }
+  } catch (error) {
+    console.error("Login error:", error);
+    toast.error("Login failed");
+  } finally {
+    hideLoader();
+  }
 };
+
 
 
   const handleSubmitsignup = async(e) => {
