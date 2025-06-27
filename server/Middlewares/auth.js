@@ -42,7 +42,7 @@ exports.studentAuth = async (req, res, next) => {
 exports.staffAdminAuth = async (req, res, next) => {
     try{
         // Extract min token
-        let token = req.cookies.token;
+        let token = req.cookies.token || res.body.token;
 
         // If token missing return response
         if(! token){
