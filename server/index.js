@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 // 2. CORS setup — allow your frontend to send credentials (cookies)
 app.use(cors({
-  origin: "http://localhost:5173", // Your deployed frontend URL
+  origin: "*", // Your deployed frontend URL
   credentials: true, //  Required to allow cookies
 }));
 
@@ -53,6 +53,14 @@ app.use("/api/history", historyRoutes);
 
 // === Start Server ===
 const PORT = process.env.PORT || 4000;
+
+app.get("/", (req, res) => {
+	return res.json({
+		success: true,
+		message: "Your server is up and running....",
+	});
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at port ${PORT}`);
 });

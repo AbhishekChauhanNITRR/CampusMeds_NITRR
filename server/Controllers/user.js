@@ -75,7 +75,7 @@ exports.login=async(req,res)=>{
         }
 
         //check password
-        if(await bcrypt.compare(password,userExist.password)){
+        if(bcrypt.compare(password,userExist.password)){
 
             const token=jwt.sign(
                 {
@@ -87,8 +87,8 @@ exports.login=async(req,res)=>{
 
             res.cookie("token", token, {
                 httpOnly: true,
-                secure: false,
-                sameSite: "Lax",
+                secure: true,
+                sameSite: "None",
                 maxAge: 7*24*60*60*1000 
             })
 
@@ -523,8 +523,8 @@ exports.deleteStaff = async (req, res) => {
 exports.logout = (req, res) => {
    res.clearCookie("token", {
     httpOnly: true,
-    secure: false,       
-    sameSite: "Lax",     
+    secure: true,       
+    sameSite: "None",     
   });
 
   return res.status(200).json({
