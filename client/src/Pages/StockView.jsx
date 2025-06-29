@@ -20,7 +20,7 @@ const StockView=({showLoader,hideLoader})=>{
 
     const fetchData=async()=>{
         try {
-            showLoader();
+            // showLoader();
 
             const res=await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/medicine/get-by-name?name=${med}`);
             let arr=[];
@@ -33,7 +33,7 @@ const StockView=({showLoader,hideLoader})=>{
             toast.error("Error");
         }
         finally{
-            hideLoader();
+            // hideLoader();
         }
     }
     useEffect(()=>{
