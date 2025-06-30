@@ -19,7 +19,7 @@ const HomeSlider = () => {
     autoplaySpeed: 3000,
   };
 
-  const images = [collegeImg,collegeImg4,collegeImg5,collegeImg6,collegeImg8];
+  const images = [collegeImg,collegeImg4,collegeImg5,collegeImg8,collegeImg6];
 
   return (
     <div className="w-screen h-[56vh] overflow-hidden relative z-0">
