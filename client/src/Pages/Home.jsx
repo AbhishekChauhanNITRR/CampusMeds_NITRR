@@ -1,37 +1,31 @@
-import collegeImg from '../assets/nitrr-img.jpeg'
 import Runningcd from '../Components/RunningCode';
 import HomeLowerBlock from '../Components/HomeLowerBlock';
-// import { useNavigate } from 'react-router-dom';
-const Home=({isLogin,setIsLogin,showLoader,hideLoader})=>{
-
-    // const navigate=useNavigate();
-    // if(isLogin){
-    //     navigate()
-    // }
-
+import HomeSlider from '../Components/HomeSlider';
+const Home=({showLoader,hideLoader})=>{
 
 
     const codeblock = `Visiting Consultants – NIT Raipur:
 
-🩺 Dr. Manjusha Agrawal (Gynaecologist)
-   Tue – 11:30 AM to 1:30 PM
+        🩺 Dr. Manjusha Agrawal (Gynaecologist)
+        Tue – 11:30 AM to 1:30 PM
 
-🌿 Dr. V. Koshley (Dermatologist)
-   Fri – 4:00 PM to 6:00 PM
+        🌿 Dr. V. Koshley (Dermatologist)
+        Fri – 4:00 PM to 6:00 PM
 
-🩻 Dr. Yogesh Dhabarde (Physician)
-   Mon – 4:00 PM to 6:00 PM
+        🩻 Dr. Yogesh Dhabarde (Physician)
+        Mon – 4:00 PM to 6:00 PM
 
-🧠 Dr. Nishant Kumar Sahu (Psychiatrist)
-   Wed – 4:00 PM to 6:00 PM
+        🧠 Dr. Nishant Kumar Sahu (Psychiatrist)
+        Wed – 4:00 PM to 6:00 PM
 
-🏥 Dr. B.P. Tripathi (Homeopathy)
-   Mon, Wed, Thu, Sat – 2:00 PM to 5:00 PM
-`;
+        🏥 Dr. B.P. Tripathi (Homeopathy)
+        Mon, Wed, Thu, Sat – 2:00 PM to 5:00 PM
+        `;
 
     return (
         <div className="flex flex-col mx-auto">
-            <img src={collegeImg} alt='collegeImg' className='w-full'/>
+            <HomeSlider/>
+            
             <div className='flex flex-row'>
                 <Runningcd color={"text-blue-500"} codeblock={codeblock} backgroundGradient={"bg-gradient-to-r from-indigo-700 via-indigo-500 to-slate-500"}/>
                 <div className="w-[70%] bg-gradient-to-r from-blue-100 via-blue-200 to-cyan-100 text-blue-900 p-6  shadow-md">
