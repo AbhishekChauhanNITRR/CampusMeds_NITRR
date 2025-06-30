@@ -1,6 +1,7 @@
 import collegeImg from '../assets/nitrr-img.jpeg';
 import collegeImg4 from '../assets/clgImg4.jpg';
 import collegeImg5 from '../assets/clgImg5.jpg';
+import collegeImg6 from '../assets/clgImg6.jpg';
 import collegeImg8 from '../assets/clgImg8.jpeg';
 import React from 'react';
 import Slider from 'react-slick';
@@ -18,7 +19,7 @@ const HomeSlider = () => {
     autoplaySpeed: 3000,
   };
 
-  const images = [collegeImg,collegeImg4,collegeImg5,collegeImg8];
+  const images = [collegeImg,collegeImg5,collegeImg8,collegeImg6];
 
   return (
     <div className="w-screen h-[56vh] overflow-hidden relative z-0">
